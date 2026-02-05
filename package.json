@@ -15,7 +15,7 @@
     "contracts"
   ],
   "dependencies": {
-    "@etcswap/v2-core": "file:../v2-core",
+    "@etcswap/v2-core": "github:white-b0x/v2-core#etc",
     "@uniswap/lib": "4.0.1-alpha"
   },
   "devDependencies": {
