@@ -21,7 +21,7 @@ library ETCswapV2Library {
                 hex'ff',
                 factory,
                 keccak256(abi.encodePacked(token0, token1)),
-                hex'fa6865812aae02db67c54fe0f27c82c60f55aac028fd78b9839579911832679e' // init code hash
+                hex'f088d04971b3f2d665f0c6dfca9a1bf827ab3f7cd7dc4916410764516ba718bb' // init code hash
             ))));
     }
 

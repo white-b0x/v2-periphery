@@ -71,7 +71,7 @@ contracts/
 The library uses CREATE2 to compute pair addresses. Update the hash in `ETCswapV2Library.sol`:
 
 ```solidity
-hex'fa6865812aae02db67c54fe0f27c82c60f55aac028fd78b9839579911832679e'
+hex'f088d04971b3f2d665f0c6dfca9a1bf827ab3f7cd7dc4916410764516ba718bb'
 ```
 
 ## Local Development
@@ -108,6 +108,31 @@ This package depends on `@etcswap/v2-core`:
   }
 }
 ```
+
+## ETC Deployment
+
+### Live Contracts (Use Existing)
+
+WETC is already deployed:
+
+| Contract | Address | Networks |
+|----------|---------|----------|
+| **WETC** | `0x1953cab0E5bFa6D4a9BaD6E05fD46C1CC6527a5a` | ETC (61), Mordor (63) |
+
+### What to Deploy
+
+- **ETCswapV2Router02** - Pass existing WETC address to constructor
+
+### What to Skip
+
+| Contract | Reason |
+|----------|--------|
+| **ETCswapV2Router01** | Has minor bug; use Router02 |
+| **ETCswapV2Migrator** | Only for V1→V2 migration; no V1 on ETC |
+
+### V1 Interfaces
+
+The V1 interfaces in `contracts/interfaces/V1/` are kept for compatibility but V1 contracts should **NOT** be deployed due to critical reentrancy vulnerabilities.
 
 ## ETC Compatibility
 
