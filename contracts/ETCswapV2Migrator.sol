@@ -43,7 +43,7 @@ contract ETCswapV2Migrator is IETCswapV2Migrator {
             TransferHelper.safeTransfer(token, msg.sender, amountTokenV1 - amountTokenV2);
         } else if (amountETCV1 > amountETCV2) {
             // addLiquidityETC guarantees that all of amountETCV1 or amountTokenV1 will be used, hence this else is safe
-            TransferHelper.safeTransferETC(msg.sender, amountETCV1 - amountETCV2);
+            TransferHelper.safeTransferETH(msg.sender, amountETCV1 - amountETCV2);
         }
     }
 }

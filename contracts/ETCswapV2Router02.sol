@@ -96,7 +96,7 @@ contract ETCswapV2Router02 is IETCswapV2Router02 {
         assert(IWETC(WETC).transfer(pair, amountETC));
         liquidity = IETCswapV2Pair(pair).mint(to);
         // refund dust eth, if any
-        if (msg.value > amountETC) TransferHelper.safeTransferETC(msg.sender, msg.value - amountETC);
+        if (msg.value > amountETC) TransferHelper.safeTransferETH(msg.sender, msg.value - amountETC);
     }
 
     // **** REMOVE LIQUIDITY ****
@@ -136,7 +136,7 @@ contract ETCswapV2Router02 is IETCswapV2Router02 {
         );
         TransferHelper.safeTransfer(token, to, amountToken);
         IWETC(WETC).withdraw(amountETC);
-        TransferHelper.safeTransferETC(to, amountETC);
+        TransferHelper.safeTransferETH(to, amountETC);
     }
     function removeLiquidityWithPermit(
         address tokenA,
@@ -188,7 +188,7 @@ contract ETCswapV2Router02 is IETCswapV2Router02 {
         );
         TransferHelper.safeTransfer(token, to, IERC20(token).balanceOf(address(this)));
         IWETC(WETC).withdraw(amountETC);
-        TransferHelper.safeTransferETC(to, amountETC);
+        TransferHelper.safeTransferETH(to, amountETC);
     }
     function removeLiquidityETCWithPermitSupportingFeeOnTransferTokens(
         address token,
@@ -279,7 +279,7 @@ contract ETCswapV2Router02 is IETCswapV2Router02 {
         );
         _swap(amounts, path, address(this));
         IWETC(WETC).withdraw(amounts[amounts.length - 1]);
-        TransferHelper.safeTransferETC(to, amounts[amounts.length - 1]);
+        TransferHelper.safeTransferETH(to, amounts[amounts.length - 1]);
     }
     function swapExactTokensForETC(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
         external
@@ -296,7 +296,7 @@ contract ETCswapV2Router02 is IETCswapV2Router02 {
         );
         _swap(amounts, path, address(this));
         IWETC(WETC).withdraw(amounts[amounts.length - 1]);
-        TransferHelper.safeTransferETC(to, amounts[amounts.length - 1]);
+        TransferHelper.safeTransferETH(to, amounts[amounts.length - 1]);
     }
     function swapETCForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
         external
@@ -313,7 +313,7 @@ contract ETCswapV2Router02 is IETCswapV2Router02 {
         assert(IWETC(WETC).transfer(ETCswapV2Library.pairFor(factory, path[0], path[1]), amounts[0]));
         _swap(amounts, path, to);
         // refund dust eth, if any
-        if (msg.value > amounts[0]) TransferHelper.safeTransferETC(msg.sender, msg.value - amounts[0]);
+        if (msg.value > amounts[0]) TransferHelper.safeTransferETH(msg.sender, msg.value - amounts[0]);
     }
 
     // **** SWAP (supporting fee-on-transfer tokens) ****
@@ -396,7 +396,7 @@ contract ETCswapV2Router02 is IETCswapV2Router02 {
         uint amountOut = IERC20(WETC).balanceOf(address(this));
         require(amountOut >= amountOutMin, 'ETCswapV2Router: INSUFFICIENT_OUTPUT_AMOUNT');
         IWETC(WETC).withdraw(amountOut);
-        TransferHelper.safeTransferETC(to, amountOut);
+        TransferHelper.safeTransferETH(to, amountOut);
     }
 
     // **** LIBRARY FUNCTIONS ****
